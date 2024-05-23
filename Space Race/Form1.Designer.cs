@@ -111,6 +111,7 @@
             this.Controls.Add(this.p2scoreLabel);
             this.Controls.Add(this.p1scoreLabel);
             this.DoubleBuffered = true;
+            this.ForeColor = System.Drawing.Color.Chartreuse;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.Text = "Form1";

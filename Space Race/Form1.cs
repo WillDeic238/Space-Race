@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
+using System.Media;
+
 
 namespace Space_Race
 {
@@ -43,7 +45,9 @@ namespace Space_Race
         public Form1()
         {
             InitializeComponent();
-            
+
+            SoundPlayer soundplayer1 = new SoundPlayer(Properties.Resources.intro);
+            soundplayer1.Play();
         }
         public void InitializeGame()
         {
@@ -61,6 +65,9 @@ namespace Space_Race
 
             player1.Y = 575;
             player2.Y = 575;
+
+            SoundPlayer soundplayer1 = new SoundPlayer(Properties.Resources.intro);
+            soundplayer1.Stop();
 
             astroidList.Clear();
             speedList.Clear();
@@ -178,7 +185,9 @@ namespace Space_Race
             }
             //When player 1 hits the top he goes back down to the start and scores a point
             if (wPressed == true && player1.Y <= 0)
-            {
+            { 
+                SoundPlayer ohyeah = new SoundPlayer(Properties.Resources.ohyeah);
+                ohyeah.Play();
                 player1.Y = 575;
                 p1Score = p1Score + 1;
                 p1scoreLabel.Text = $"{p1Score}";
@@ -186,6 +195,8 @@ namespace Space_Race
             //When player 2 hits the top he goes back down to the start and scores a point
             if (upPressed == true && player2.Y <= 0)
             {
+                SoundPlayer ohyeah = new SoundPlayer(Properties.Resources.ohyeah);
+                ohyeah.Play();
                 player2.Y = 575;
                 p2Score = p2Score + 1;
                 p2scoreLabel.Text = $"{p2Score}";
@@ -196,6 +207,8 @@ namespace Space_Race
                 if (astroidList[i].IntersectsWith(player1))
                 {
                     player1.Y = 575;
+                    SoundPlayer explosion = new SoundPlayer(Properties.Resources.explosion);
+                    explosion.Play();
                 }
             }
             for (int i = 0; i < astroidList.Count(); i++)
@@ -203,10 +216,14 @@ namespace Space_Race
                 if (astroidList[i].IntersectsWith(player2))
                 {
                     player2.Y = 575;
+                    SoundPlayer explosion = new SoundPlayer(Properties.Resources.explosion);
+                    explosion.Play();
                 }
             }
             if (p1Score == 3)
             {
+                SoundPlayer soundplayer1 = new SoundPlayer(Properties.Resources.intro);
+                soundplayer1.Play();
                 gameTimer.Enabled = false;
                 winLabel.Text = "Purple wins";
                 player1.Y = 575;
@@ -220,6 +237,8 @@ namespace Space_Race
             }
             if (p2Score == 3)
             {
+                SoundPlayer soundplayer1 = new SoundPlayer(Properties.Resources.intro);
+                soundplayer1.Play();
                 gameTimer.Enabled = false;
                 winLabel.Text = "Orange wins";
                 player1.Y = 575;
